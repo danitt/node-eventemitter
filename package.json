@@ -1,0 +1,13 @@
+{
+  "name": "hfdp-weather",
+  "author": "Danitt <dan@danitt.com>",
+  "version": "0.0.1",
+  "private": true,
+  "create": false,
+  "repository": {},
+  "scripts": {
+    "start": "nodemon --watch 'src/**/*.ts' --ignore 'src/**/*.spec.ts' --exec 'ts-node' src/index.ts"
+  },
+  "homepage": "https://www.danitt.com",
+  "license": "PRIVATE"
+}
