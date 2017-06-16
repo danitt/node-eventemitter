@@ -1,4 +1,3 @@
-import { getTemperature, getHumidity, getPressure } from './mocks'
 import { EventEmitter } from 'events'
 
 interface weatherMeasurements {
@@ -35,13 +34,11 @@ class Display {
       if (this.isSubscribed) this.handler(data)
     })
   }
-
   subscribe = () => this.isSubscribed = true
   unsubscribe = () => this.isSubscribed = false
-
 }
 
-console.log(`\n\n ### Instantiating Observers`)
+console.log(`\n ### Instantiating Observers`)
 const currentConditionsDisplay = new Display(WeatherData, 'currentConditionsDisplay', data => {
   console.log('currentConditionsDisplayHandler')
 })
@@ -52,16 +49,19 @@ const forecastDisplay = new Display(WeatherData, 'forecastDisplay', data => {
   console.log('forecastDisplayHandler')
 })
 
-console.log(`\n\n ### Subscribing Observers`)
+console.log(`\n ### Subscribing Observers`)
 
 currentConditionsDisplay.subscribe()
 statisticsDisplay.subscribe()
 
 setTimeout(function() {
-  console.log('\n\n ### Unsubscribing currentConditionsDisplay')
+  console.log('\n### Unsubscribing currentConditionsDisplay')
   currentConditionsDisplay.unsubscribe()
-  console.log('\n\n ### Subscribing forecastDisplay')
+  console.log('### Subscribing forecastDisplay')
   forecastDisplay.subscribe()
+  console.log('### Instantiating + Subscribing newDisplay')
+  const newDisplay = new Display(WeatherData, 'newDisplay', data => console.log('newDisplayHandler'))
+  newDisplay.subscribe()
 }, 5000)
 
 
